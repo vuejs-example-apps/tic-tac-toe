@@ -166,11 +166,12 @@ var gameView = new Vue({
             if(!isNumeric(this.size)){
                 this.inputMessage = 'not a number';
                 this.size = '';
-                return
+                return;
             }
             if((this.size > 15)||(this.size < 3)){
                 this.inputMessage = 'number not in the range [3..15]';
                 this.size = '';
+                return;
             }
             this.isGame.active = true;
             this.field = game.newGame(this.size);
