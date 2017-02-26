@@ -1,0 +1,85 @@
+.gameCell{
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #4f6180;
+    border-radius: 3px;
+    background-color: burlywood;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+.gameField{
+    border-spacing: 0px;
+    margin: 30px auto;
+}
+.none{
+
+}
+
+.circle:before{
+    text-align: center;
+    color: blue;
+    content: '\20dd';
+    font-size: 20px;
+    line-height: 24px;
+    padding: 2px;
+
+}
+
+.cross:before{
+    text-align: center;
+    color: red;
+    content: '\2573';
+    font-size: 20px;
+    line-height: 24px;
+    padding: 2px;
+}
+
+#gameDiv, .newGame{
+    width: 400px;
+    height: 330px;
+    margin: 50px auto;
+    vertical-align: middle;
+}
+
+.score{
+    height: 200px;
+    width: 400px;
+    background-color: #4f6180;
+}
+
+.dimentionInput{
+    height: 130px;
+    width: 400px;
+    background-color: aqua;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.crossScore, .circleScore{
+    height: 200px;
+    width: 200px;
+    float: left;
+    text-align: center;
+
+}
+
+.crossScore{
+    color: red;
+    font-size: 100px;
+    line-height: 200px;
+}
+
+.circleScore{
+    color: blue;
+    font-size: 100px;
+    line-height: 200px;
+}
+
+.input{
+    margin: 50px auto;
+    height: 30px;
+    width: 200px;
+}

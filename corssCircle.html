@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="crossCircle.css">
+</head>
+<body>
+<div id="gameDiv">
+    <table v-if="isGame.active" class="gameField" v-on:click="getClick">
+        <tr v-for="(row, indexRow) in field">
+            <td class="gameCell" v-for="(cell, indexCell) in row" :class="field[indexRow][indexCell]"></td>
+        </tr>
+    </table>
+    <div v-else class="newGame">
+        <div class="score">
+            <div class="crossScore">{{ score.cross }}</div>
+            <div class="circleScore">{{ score.circle }}</div>
+        </div>
+        <div class="dimentionInput">
+            <input class="input" type="text" v-on:keyUp.enter="newGame" :placeholder="inputMessage" v-model="size">
+        </div>
+    </div>
+</div>
+
+<script src="crossCircle.js"></script>
+</body>
+</html>
