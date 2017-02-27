@@ -2,9 +2,19 @@
  * Created by minsk on 25.02.2017.
  */
 'use strict'
-function Game() {
+
+// utils
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+// main game object
+function Game () {
+
     var gameLog = [];
+    
     var isGame = {active: false};
+    
     var field = {
         fieldArr: [],
         fromVector: function (vector) {
@@ -13,11 +23,17 @@ function Game() {
             return field.fieldArr[vector.y][vector.x];
         }
     };
+
     var activePlayer;
+    
     var lastTurn;
+
     var size;
+    
     const fieldWidth = 500;
+    
     const fieldHeight = 500;
+    
     var score = {
         'cross': 0,
         'circle': 0
@@ -32,11 +48,11 @@ function Game() {
         return field.fieldArr;
     };
 
-    function setActivePlayer(player) {
+    function setActivePlayer (player) {
         activePlayer = player;
     };
 
-    function endTurn() {
+    function endTurn () {
         if (checkEndfGame()) {
             endOfGame();
             Vue.nextTick(function () {
@@ -47,16 +63,18 @@ function Game() {
         togglePlayer();
         intoGameLog();
     };
-    function endOfGame() {
+
+    function endOfGame () {
         score[activePlayer] = score[activePlayer] + 1;
         console.log(score[activePlayer]);
     }
 
-    function togglePlayer() {
+    function togglePlayer () {
         if (activePlayer == 'cross') setActivePlayer('circle');
         else setActivePlayer('cross');
     }
-    function checkEndfGame() {
+
+    function checkEndfGame () {
         var keys = Object.keys(direction);
         for (var i = 0; i < keys.length; i++) {
             var turn = new Vector(lastTurn.x, lastTurn.y);
@@ -76,16 +94,16 @@ function Game() {
         return false;
     }
 
-    function intoGameLog() {
+    function intoGameLog () {
         gameLog.push(lastTurn);
     }
 
-    function isEmpty(vector) {
+    function isEmpty (vector) {
         if(field.fieldArr[vector.y][vector.x] == 'n') return true
         return false;
     }
 
-    function newField(n) {
+    function newField (n) {
         field.fieldArr.splice(0,field.fieldArr.length);
         for (var i = 0; i < n; i++) {
             var line = [];
@@ -118,16 +136,17 @@ function Game() {
         'ne': 'sw'
     }
 
-    function Vector(x, y) {
+    function Vector (x, y) {
         this.x = x;
         this.y = y;
         //console.log('x:', x, 'y:', y, 'this:', this, 'this.x:', this.x, 'this.y:', this.y);
     }
+    
     Vector.prototype.plus = function (vector) {
         return new Vector(this.x + vector.x, this.y + vector.y);
     };
 
-    function getTurn(vector) {
+    function getTurn (vector) {
         if(isEmpty(vector)) {
             lastTurn = new Vector(vector.x, vector.y);
             field.fieldArr[vector.y].splice(vector.x, 1, activePlayer);
@@ -147,7 +166,9 @@ function Game() {
 }
 
 var game = new Game();
+
 var gameField = '';
+
 var gameView = new Vue({
     el:'#gameDiv',
     data: {
@@ -178,7 +199,3 @@ var gameView = new Vue({
         }
     }
 });
-
-function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
